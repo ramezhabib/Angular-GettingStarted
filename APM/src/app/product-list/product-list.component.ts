@@ -27,7 +27,6 @@ export class ProductListComponent implements OnInit{
 
   constructor(private productService: ProductService) {
 
-    this.listFilter = 'cart';
   }
 
   toggleImage() {
@@ -46,6 +45,7 @@ export class ProductListComponent implements OnInit{
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
+    this.filteredProducts = this.products;
   }
 
 
