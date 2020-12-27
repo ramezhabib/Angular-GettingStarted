@@ -7,23 +7,10 @@ import { IProduct } from './product/product';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit{
-
-
   pageTitle = "Product List";
   imageWidth = 50;
   imageMargin = 2;
   showImage = false;
-  _listFilter: string;
-
-  get listFilter(): string  {
-    return this._listFilter;
-  }
-  set listFilter(value: string) {
-    this._listFilter = value;
-    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
-  }
-
-  filteredProducts: IProduct[];
 
   products: IProduct[] =
     [
@@ -49,20 +36,42 @@ export class ProductListComponent implements OnInit{
       }
     ]
 
+  filteredProducts: IProduct[];
+  _listFilter: string;
+
+  get listFilter(): string  {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+  }
+
+  // constructor() {
+  //   this.filteredProducts = this.products;
+  //   this.listFilter = 'cart';
+  // }
+
   toggleImage() {
     this.showImage = !this.showImage;
   }
 
   performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.products.filter((product: IProduct) => 
+    return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  onRatingClicked(message: string): void {
+    this.pageTitle = 'Product List: ' + message;
   }
 
   ngOnInit(): void {
     console.log('In OnInit');
   }
-  
+
+
 
 
 
