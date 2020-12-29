@@ -3,7 +3,7 @@ import { IProduct } from './product/product';
 import { ProductService } from './product/product.service';
 
 @Component({
-  selector: 'pm-product-list',
+  // selector: 'pm-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit{
     this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
   }
 
-  errorMessage: any;
+  errorMessage: string;
 
   constructor(private productService: ProductService) {
 
